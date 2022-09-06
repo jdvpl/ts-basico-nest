@@ -1,7 +1,7 @@
-import { name } from "./basic/0.1-type";
+import { name, age, tString } from "./basic/01-type";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
-    hola mundo desde ts ${name}
+    hols ${name} tienes ${age} data, ${tString}
   </div>
 `;
