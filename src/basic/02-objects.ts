@@ -10,3 +10,7 @@ export const user: InfoUser = {
   id: "1",
   name: "Juan Daniel",
 };
+
+export const infos: InfoUser[] = [];
+
+infos.push(user);
