@@ -1,9 +1,9 @@
 // import { name, age, tString } from "./basic/01-type";
 
-import { infos, user } from "./basic/02-objects";
+import { user } from "./02-classes/03clases";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
-    hols ${infos.join(",")} 
+    hola ${user.name} #${user.id} 
   </div>
 `;
