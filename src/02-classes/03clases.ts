@@ -1,3 +1,6 @@
+import axios from "axios"
+import { RandomUserResponse, Result } from "../interfaces/randonUser-response.interface";
+
 export class User {
 
 
@@ -14,6 +17,13 @@ export class User {
   speak() {
     console.log(this.name, this.name)
   }
+
+  async getUser(): Promise<Result[]> {
+    const { data } = await axios.get<RandomUserResponse>("https://randomuser.me/api/");
+    return data.results;
+  }
 }
 
 export const user = new User(91, "jiren")
+const lol = new User(27, "kakaroto");
+console.log(lol.getUser())
