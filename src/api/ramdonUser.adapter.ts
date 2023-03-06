@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export class RandonUserAdapter {
+export class RandonUserAdapter implements HttpAdapter {
 
   private readonly axios = axios;
 
-  async get(url: string) {
+  async get<T>(url: string): Promise<T> {
     // peticion get
-    const { data } = await this.axios.get(url);
+    const { data } = await this.axios.get<T>(url);
     return data;
   }
   async post(url: string, data: any) {
@@ -26,4 +26,18 @@ export class RandonUserAdapter {
     return;
   }
 
+}
+
+// liskov principle
+export class RandonUserFetchAdapter implements HttpAdapter {
+  async get<T>(url: string): Promise<T> {
+    // peticion get
+    const resp = await fetch(url);
+    const data: T = await resp.json()
+    return data;
+  }
+}
+
+export interface HttpAdapter {
+  get<T>(url: string): Promise<T>;
 }

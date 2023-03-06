@@ -1,10 +1,8 @@
-import { RandonUserAdapter } from "../api/ramdonUser.adapter";
+import { HttpAdapter, RandonUserAdapter, RandonUserFetchAdapter } from "../api/ramdonUser.adapter";
 import { RandomUserResponse, Result } from "../interfaces/randonUser-response.interface";
 
 export class User {
-
-
-  constructor(public readonly id: number, public readonly name: string, private readonly http: RandonUserAdapter) {
+  constructor(public readonly id: number, public readonly name: string, private readonly http: HttpAdapter) {
 
   }
   get imageUrl(): string {
@@ -19,10 +17,11 @@ export class User {
   }
 
   async getUser(): Promise<Result[]> {
-    const { data } = await this.http.get("https://randomuser.me/api/");
+    const data = await this.http.get<RandomUserResponse>("https://randomuser.me/api/");
+    console.log(data.results[0].location.timezone.description)
     return data.results;
   }
 }
-const instanceAdapter = new RandonUserAdapter()
-export const user = new User(27, "kakaroto", instanceAdapter);
-console.log(user.getUser())
+const instanceFetchAdapter = new RandonUserFetchAdapter();
+export const user = new User(27, "kakaroto", instanceFetchAdapter);
+user.getUser()
