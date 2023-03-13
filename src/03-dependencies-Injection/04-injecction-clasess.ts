@@ -1,4 +1,4 @@
-import { HttpAdapter, RandonUserAdapter, RandonUserFetchAdapter } from "../api/ramdonUser.adapter";
+import { HttpAdapter, RandonUserFetchAdapter } from "../api/ramdonUser.adapter";
 import { RandomUserResponse, Result } from "../interfaces/randonUser-response.interface";
 
 export class User {
